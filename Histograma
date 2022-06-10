@@ -1,0 +1,47 @@
+#O código escolhido foi o de histograma:
+
+histogram = np.zeros(256)
+for i in range(img_grayscale_pondered.shape[0]):
+    for j in range(img_grayscale_pondered.shape[1]):
+        histogram[img_grayscale_pondered[i,j]] += 1
+
+print(histogram[100])
+
+x = np.linspace(0,256,256)
+plt.bar(x,histogram)
+plt.xlabel('intensidade');
+plt.ylabel('frequência');
+plt.show()
+
+plt.hist(img_grayscale_pondered.ravel(),256,[0,256])
+plt.show()
+
+histogram_normalized = histogram/(img_grayscale_pondered.shape[0]*img_grayscale_pondered.shape[1])
+
+x = np.linspace(0,256,256)
+plt.plot(x,histogram_normalized)
+plt.xlabel('intensidade');
+plt.ylabel('frequência');
+plt.show()
+
+# O histograma de uma imagem é responsável por indicar o número ou a porcentagem de pixels que a imagem importada tem em determinado nivel de cor, sendo assim 
+extremamente utilizado para a analise de imagens que necessitam ser editadas, como para alteração de contraste, por exemplo.
+Neste caso, uma imagem com baixo contraste apresentaria um histograma com niveis altos e concentrados em cores medianas, sem muita variedade no espectro.
+
+O que permite a execução de um histograma neste caso, é a implementação da biblioteca "matplotlib";
+
+A linha "plt.hist(img_grayscale_pondered.ravel(),256,[0,256])" é responsavel por trasnformar a matriz 2d em um unico vetor de uma direção, sendo o primeiro valor responsavel por 
+determinar a quantidade de tons por ponto x no histograma, o segundo por determinar o intervalo de pontos x que o grafico terá (0,256);
+
+A linha "plt.show()" é responsável por mostrar o histograma na tela;
+
+O bloco:
+
+x = np.linspace(0,256,256)
+plt.plot(x,histogram_normalized)
+plt.xlabel('intensidade');
+plt.ylabel('frequência');
+plt.show()
+
+É o responsavel pela criação de um gráfico a partir do histograma, onde as linhas 39 e 40 são usadas para criação das legendas horizontal e vertical, respectivamente,
+do grafico
